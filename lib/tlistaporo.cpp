@@ -141,8 +141,8 @@ TListaPoro::TListaPoro(const TListaPoro & other){
 }
 
 TListaPoro::~TListaPoro(){
-    delete this->primero;
-    delete this->ultimo;
+    this->primero = nullptr;
+    this->ultimo = nullptr;
 }
 
 TListaPoro& TListaPoro::operator=(const TListaPoro &other) {
