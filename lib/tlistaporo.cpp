@@ -351,37 +351,22 @@ TListaPoro TListaPoro::ExtraerRango(int n1, int n2){
 }
 
 ostream& operator<<(ostream &os, const TListaPoro &lista) {
-    if(lista.primero == nullptr){
-        os << "()";
-        return os;
-    }
-
-    TListaNodo *aux = lista.primero;
-
-    os << "(" << aux->e << "," << aux->e.PosicionX() << "," << aux->e.PosicionY() << "," << aux->e.Volumen() << ")";
-
-    while (aux != nullptr){
-        if(lista.primero == nullptr){
-            os << "()";
-            return os;
-        }
+    os << "(";
     
+    if (lista.primero != nullptr) {
         TListaNodo *aux = lista.primero;
-    
-        os << "(" << aux->e << "," << aux->e.PosicionX() << "," << aux->e.PosicionY() << "," << aux->e.Volumen() << ")";
-    
-        while (aux != nullptr)
-        {
-            aux = aux->siguiente;
-            os << ",(" << aux->e << "," << aux->e.PosicionX() << "," << aux->e.PosicionY() << "," << aux->e.Volumen() << ")";
-        }
-        os << ")";
-        return os;
-    }
-    {
+        
+        // Print first element without comma
+        os << aux->e;
+        
+        // Print remaining elements with leading comma
         aux = aux->siguiente;
-        os << ",(" << aux->e << "," << aux->e.PosicionX() << "," << aux->e.PosicionY() << "," << aux->e.Volumen() << ")";
+        while (aux != nullptr) {
+            os << " " << aux->e;
+            aux = aux->siguiente;
+        }
     }
+    
     os << ")";
     return os;
 }
